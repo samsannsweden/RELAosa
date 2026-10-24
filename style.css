@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 20px;
+  
+  margin: 0;
+}
+
+/* Visas när hela bakgrunden är klickbar i slutet */
+body.clickable-bg {
+  cursor: pointer;
+}
+
+.ad-container {
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Grid med 2x2 för de 4 svarsbilderna */
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Svarsbilder som lyfts när man för fingret/pekaren över */
+.image-option {
+  width: 100%;
+  height: clamp(100px, 25vh, 170px);
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+}
+
+/* Hovringseffekt (lyft) enbart på datorer med muspekare */
+@media (hover: hover) {
+  .image-option:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 14px 25px rgba(0, 0, 0, 0.4);
+    border-color: #ffffff;
+  }
+}
+
+/* En snabb nedtryckningseffekt för klick/touch istället för att den fastnar */
+.image-option:active {
+  transform: scale(0.92) !important; /* Krymper till 92% av sin storlek vid tryck */
+  filter: brightness(1.1); /* Gör bilden lite ljusare och intensivare */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hidden {
+  display: none;
+}
+
+#restart-btn {
+  background: linear-gradient(135deg, #e0d8c0, #3a5c57); /* Varma, jordnära RELA-toner (terrakotta/korall) */
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(2, 39, 17, 0.4); /* Mjuk färgmatchad skugga */
+  position: absolute;
+  top: 180px; /* 60 pixlar från skärmens nederkant */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  user-select: none;
+  outline: none;
+  margin-top: 20px;
+}
+
+#restart-btn:active {
+  transform: scale(0.93);
+  box-shadow: 0 4px 10px rgba(224, 122, 95, 0.3);
+  filter: brightness(1.1);
+}
